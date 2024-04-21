@@ -1,0 +1,59 @@
+package quiz.application;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Score extends JFrame implements ActionListener {
+
+    Score(String name, int score) {
+        setBounds(400, 150, 750, 550);
+        getContentPane().setBackground(Color.WHITE);
+        setLayout(null);
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/score1.jpeg"));
+        Image i2 = i1.getImage().getScaledInstance(300, 250, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(0, 200, 300, 250);
+        add(image);
+        
+        JLabel heading = new JLabel("Thankyou " + name + " for attempt");
+        heading.setBounds(45, 30, 700, 30);
+        heading.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        add(heading);
+        
+        JLabel lblscore = new JLabel("Your score is " + score);
+        lblscore.setBounds(350, 200, 300, 30);
+        lblscore.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        add(lblscore);
+        
+        JLabel correct = new JLabel("Correct answers:- " + score/10);
+        correct.setBounds(350, 250, 300, 30);
+        correct.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        add(correct);
+        
+        JLabel wrong = new JLabel("Incorrect answers:- " + (10-(score/10)));
+        wrong.setBounds(350, 300, 300, 30);
+        wrong.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        add(wrong);
+        
+        JButton submit = new JButton("Retry");
+        submit.setBounds(380, 350, 120, 30);
+        submit.setBackground(new Color(30, 144, 255));
+        submit.setForeground(Color.WHITE);
+        submit.addActionListener(this);
+        add(submit);
+        
+        setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent ae) {
+        setVisible(false);
+        new Login();
+    }
+
+    public static void main(String[] args) {
+        new Score("User", 0);
+    }
+}
